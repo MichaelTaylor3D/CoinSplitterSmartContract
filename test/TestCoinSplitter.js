@@ -2,6 +2,7 @@ var CoinSplitter = artifacts.require("./CoinSplitter.sol");
 
 contract('CoinSplitter', async (accounts) => {
   const instance = await CoinSplitter.deployed();
+  const addressStub = 0x00000f;
 
   describe('Initial State', () => {
     it('Expects numCoins to init at 0', async () => {
@@ -14,8 +15,7 @@ contract('CoinSplitter', async (accounts) => {
   describe('#addSplitAddr()', () => {
     it('adds to the index of numCoins when address is added', async () => {
       const weight = 20;
-      const fakeAddress = 0x0000f;
-      await instance.addSplitAddr(weight, fakeAddress);
+      await instance.addSplitAddr(weight, addressStub);
 
       assert.equal(Number(await instance.numCoins.call()), 1,
         'numCoins was not incremented when address was added'
@@ -28,7 +28,7 @@ contract('CoinSplitter', async (accounts) => {
       // this expects that these functions were already tested
       // So test this after these tests
       await instance.clearAllAddr();
-      await instance.addSplitAddr(0, 0x000f);
+      await instance.addSplitAddr(0, addressStub);
     });
 
     it("subtracts from the index in numCoins when a address is removed", async () => {

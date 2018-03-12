@@ -34,6 +34,7 @@ contract CoinSplitter {
 
     function CoinSplitter() public {
         numCoins = 0;
+        // Equivalent to 0.1 Ether
         minDepositInWei = 100000000000000000;
         currentTotalWeight = 0;
         creator = msg.sender;
