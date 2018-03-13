@@ -99,7 +99,6 @@ contract('CoinSplitter', async (accounts) => {
   });
 
   describe('#splitBalance', () => {
-    let accounts;
     beforeEach(async () => {
       await instance.clearAllAddr();
     });
