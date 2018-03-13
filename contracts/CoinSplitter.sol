@@ -27,7 +27,6 @@ contract CoinSplitter {
     // This is much cheaper in gas cost, then deleting mapping elements.
     uint8 public numCoins;
 
-    // Equivalent to 0.1 Ether
     // We need a minDeposit, because if we send amounts to small,
     // they might not be accepted as inputs at exchanges.
     uint256 public minDepositInWei;
