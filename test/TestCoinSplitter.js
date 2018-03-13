@@ -121,7 +121,7 @@ contract('CoinSplitter', async (accounts) => {
         expect(contractBalance).to.equal(0); 
       });
 
-      it('should not split balance if contract balence is less then the min req deposit', async () => {
+      it('should not split balance if contract balance is less then the min req deposit', async () => {
         await instance.addSplitAddr(50, '0x627306090abab3a6e1400e9345bc60c78a8bef57');
         await instance.addSplitAddr(50, '0xf17f52151ebef6c7334fad080c5704d77216b732');
 
