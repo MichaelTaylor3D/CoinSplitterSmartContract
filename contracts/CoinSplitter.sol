@@ -57,13 +57,13 @@ contract CoinSplitter {
         addresses[numCoins] = addr;
         weights[numCoins] = weight;
         currentTotalWeight += weight;
-        numCoins = numCoins + 1;
+        numCoins++;
     }
 
     function removeLastAddr() public onlyOwner {
         require(numCoins != 0);
         currentTotalWeight -= weights[numCoins];
-        numCoins -= 1;
+        numCoins--;
     }
 
     function clearAllAddr() public onlyOwner {
@@ -82,11 +82,10 @@ contract CoinSplitter {
         creator.transfer(thisContract.balance);
     }
 
-    function splitBalance() private {
-        address thisContract = this;
-        uint256 myBalance = thisContract.balance;
-        for (uint8 i = 0; i <= numCoins; ++i) {
-            uint256 sendAmount = myBalance * (weights[i] / 100);
+    function splitBalance() public {
+        uint myBalance = this.balance;
+        for (uint8 i = 0; i < numCoins; ++i) {
+            uint sendAmount = (myBalance * weights[i]) / 100;
             if ((myBalance - sendAmount) > 0) {
                 addresses[i].transfer(sendAmount);
             }
